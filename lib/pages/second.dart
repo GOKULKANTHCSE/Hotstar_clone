@@ -11,7 +11,15 @@ class _SecondState extends State<Second> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(),
+      body: Container(
+        child: Stack(
+          children: [
+            Positioned(
+              child: Container(),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hotstar_clone/pages/first.dart';
+// import 'package:hotstar_clone/pages/second.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -6,10 +8,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Hotstar'),
-        backgroundColor: Colors.blueAccent,
-      ),
+      body: FirstPage(),
     );
   }
 }

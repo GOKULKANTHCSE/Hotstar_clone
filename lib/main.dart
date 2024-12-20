@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hotstar_clone/widget/splash_screen.dart';
+import 'package:hotstar_clone/pages/first.dart';
+// import 'package:hotstar_clone/widget/splash_screen.dart';
 
 void main() {
   runApp(HotStar());
@@ -14,8 +15,9 @@ class HotStar extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.lightBlue,
+        brightness: Brightness.light,
       ),
-      home: SplashScreen(),
+      home: FirstPage(),
     );
   }
 }
