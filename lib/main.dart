@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
+import 'package:hotstar_clone/pages/home.dart';
 import 'package:hotstar_clone/pages/first.dart';
 // import 'package:hotstar_clone/widget/splash_screen.dart';
 
