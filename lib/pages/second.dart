@@ -176,10 +176,10 @@ class _SecondState extends State<Second> {
               ),
             ),
             SizedBox(
-              height: 50,
+              height: 5,
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(15),
               child: Stack(
                 children: [
                   Positioned(
@@ -187,19 +187,19 @@ class _SecondState extends State<Second> {
                       "We will use your information to personalize and improve your Disney+ Hotstar experience and to send you information about the service. By clicking Start Watching you agree to our Terms of Use and acknowledge that you have read our Privacy Policy. Disney+ Hotstar will collect your location data and data relating to the other apps installed to offer personalized video suggestions and ads.",
                       style: TextStyle(
                         color: Colors.white54,
-                        fontSize: 15,
+                        fontSize: 10,
                       ),
+                      textAlign: TextAlign.justify,
                     ),
                   ),
                   if (selectedLanguage.contains(true))
                     Positioned(
-                        top: 50,
-                        left: 15,
+                        left: -2.5,
+                        bottom: 10,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ElevatedButton(
                             onPressed: () {
-                              print('Language selected');
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -212,8 +212,9 @@ class _SecondState extends State<Second> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 12, horizontal: 150)),
+                                minimumSize: Size(
+                                    MediaQuery.of(context).size.width * 0.9,
+                                    50)),
                             child: Text(
                               'Continue',
                               style:

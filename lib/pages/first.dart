@@ -9,7 +9,7 @@ class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Stack(
@@ -40,7 +40,7 @@ class FirstPage extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 490,
+              top: 425,
               left: 0,
               child: Column(
                 crossAxisAlignment:
@@ -49,7 +49,7 @@ class FirstPage extends StatelessWidget {
                   // Image container aligned to the left
                   Container(
                     margin: EdgeInsets.only(
-                        left: 15, top: 15, right: 15, bottom: 0),
+                        left: 10, top: 15, right: 15, bottom: 0),
                     width: 100, // Adjust image width as needed
                     height: 100, // Set a fixed height for the image
                     decoration: BoxDecoration(
@@ -64,7 +64,7 @@ class FirstPage extends StatelessWidget {
                   // Text below the image
                   Container(
                     margin: EdgeInsets.only(
-                        left: 15, top: 0, right: 15, bottom: 2.5),
+                        left: 10, top: 0, right: 25, bottom: 2.5),
                     width: MediaQuery.of(context).size.width,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
