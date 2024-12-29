@@ -22,7 +22,7 @@ class _Profile_PageState extends State<Profile_Page> {
                 'assets/images/hotstarpng',
               ),
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.45,
+                width: MediaQuery.of(context).size.width * 0.35,
               ),
               Icon(
                 Iconsax.setting_2_outline,

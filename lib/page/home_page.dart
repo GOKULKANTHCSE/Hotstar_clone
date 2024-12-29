@@ -155,7 +155,7 @@ class _Home_PageState extends State<Home_Page> {
         ),
         Positioned(
           bottom: 16,
-          right: 155,
+          right: 95,
           child: ElevatedButton(
             onPressed: () {
               // Handle button action based on the currentIndex
@@ -163,7 +163,7 @@ class _Home_PageState extends State<Home_Page> {
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.blue,
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              minimumSize: Size(MediaQuery.of(context).size.width * 0.5, 50),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -199,7 +199,7 @@ class _Home_PageState extends State<Home_Page> {
                 ),
               ),
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.58,
+                width: MediaQuery.of(context).size.width * 0.5,
               ),
               Icon(
                 Iconsax.arrow_right_1_outline,
