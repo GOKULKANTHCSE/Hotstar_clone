@@ -47,7 +47,7 @@ class _SecondState extends State<Second> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(31, 134, 118, 118),
+      backgroundColor: Color(0xFF0A0F24),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -208,13 +208,13 @@ class _SecondState extends State<Second> {
                               );
                             },
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blue,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                minimumSize: Size(
-                                    MediaQuery.of(context).size.width * 0.9,
-                                    50)),
+                              backgroundColor: Colors.blue,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              minimumSize: Size(
+                                  MediaQuery.of(context).size.width * 0.9, 50),
+                            ),
                             child: Text(
                               'Continue',
                               style:

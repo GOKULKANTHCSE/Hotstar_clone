@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:hotstar_clone/pages/home.dart';
 import 'package:icons_plus/icons_plus.dart';
 
 class Download_Page extends StatelessWidget {
@@ -18,72 +20,89 @@ class Download_Page extends StatelessWidget {
           ),
         ),
         automaticallyImplyLeading: false,
-        backgroundColor: Color.fromRGBO(15, 16, 20, 2),
+        backgroundColor: Color(0xFF1B2B50),
       ),
-      backgroundColor: Color.fromRGBO(15, 16, 20, 2),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              padding: EdgeInsets.all(5.0),
-              child: Icon(
-                FontAwesome.box_open_solid,
-                size: 75,
-                color: const Color.fromARGB(186, 3, 168, 244),
-              ),
-              alignment: Alignment.center,
-            ),
-            Container(
-              child: Text(
-                'No Downloads Available',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFF1B2B50), // Bottom Color
+              Color(0xFF0A0F24), // Top Color
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                margin: EdgeInsets.all(5),
+                child: Icon(
+                  FontAwesome.box_solid,
+                  size: 75,
+                  color: const Color.fromARGB(186, 3, 168, 244),
                 ),
               ),
-            ),
-            Container(
-              child: Padding(
-                padding: const EdgeInsets.all(5.0),
+              Container(
                 child: Text(
-                  'Explore and download your favourite movie and                  shows to watch on the go',
+                  'No Downloads Available',
                   style: TextStyle(
-                    color: const Color.fromARGB(246, 163, 165, 230),
-                    fontSize: 15.5,
-                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ),
-            ),
-            Container(
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: ElevatedButton(
-                  onPressed: () {},
+              Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
                   child: Text(
-                    'Go to Home',
+                    'Explore and download your favourite movie and                  shows to watch on the go',
                     style: TextStyle(
-                      color: Colors.black,
+                      color: const Color.fromARGB(157, 200, 202, 245),
                       fontSize: 15.5,
                       fontWeight: FontWeight.w500,
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  style: ElevatedButton.styleFrom(
-                    minimumSize:
-                        Size(MediaQuery.of(context).size.width * 0.9, 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Home(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'Go to Home',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15.5,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      minimumSize:
+                          Size(MediaQuery.of(context).size.width * 0.9, 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

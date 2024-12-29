@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotstar_clone/page/download.dart';
 import 'package:hotstar_clone/page/home_page.dart';
+import 'package:hotstar_clone/page/profile.dart';
 import 'package:hotstar_clone/page/search.dart';
 import 'package:icons_plus/icons_plus.dart';
 
@@ -13,7 +14,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int selectedindex = 0;
-
   PageController pageController = PageController();
 
   void onTapped(int index) {
@@ -28,52 +28,68 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: PageView(
         controller: pageController,
+        onPageChanged: (index) {
+          setState(() {
+            selectedindex = index;
+          });
+        },
         children: [
-          Home_Page(),
-          Search_Page(),
-          Download_Page(),
-          // Container(
-          //   color: Color.fromRGBO(15, 16, 20, 2),
-          // ),
+          const Home_Page(),
+          const Search_Page(),
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xFF1B2B50),
+                  Color(0xFF0A0F24),
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
+            child: const Center(
+              child: Text(
+                'Update shortly',
+                style: TextStyle(fontSize: 24, color: Colors.white),
+              ),
+            ),
+          ),
+          const Download_Page(),
+          const Profile_Page(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed, // For consistent coloring
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Iconsax.home_1_outline),
             label: 'Home',
-            backgroundColor: Color.fromRGBO(15, 16, 20, 2),
           ),
           BottomNavigationBarItem(
             icon: Icon(Iconsax.search_normal_1_outline),
             label: 'Search',
-            backgroundColor: Color.fromRGBO(15, 16, 20, 2),
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Iconsax.play_circle_bold,
-            ),
+            icon: Icon(Iconsax.play_circle_bold),
             label: 'New & Hot',
-            backgroundColor: Color.fromRGBO(15, 16, 20, 2),
           ),
           BottomNavigationBarItem(
             icon: Icon(IonIcons.download),
             label: 'Downloads',
-            backgroundColor: Color.fromRGBO(15, 16, 20, 2),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Iconsax.profile_circle_outline),
+            icon: Icon(Iconsax.profile_circle_bold),
             label: 'My Space',
-            backgroundColor: Color.fromRGBO(15, 16, 20, 2),
           ),
         ],
-        iconSize: 25,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.blue,
         currentIndex: selectedindex,
         onTap: onTapped,
-        elevation: 10,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.blue,
         showUnselectedLabels: true,
+        elevation: 10,
+        iconSize: 23.5,
+        backgroundColor: const Color(0xFF0A0F24),
       ),
     );
   }

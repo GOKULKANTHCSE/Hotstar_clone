@@ -41,6 +41,7 @@ dependencies:
   carousel_slider:
   lecle_flutter_carousel_pro: ^0.0.3
   flutter_staggered_grid_view:
+  shared_preferences: ^2.0.17
 
 dev_dependencies:
   flutter_test:

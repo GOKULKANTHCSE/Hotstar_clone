@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 // ignore: unused_import
 import 'package:hotstar_clone/pages/home.dart';
 import 'package:hotstar_clone/pages/second.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FirstPage extends StatelessWidget {
   const FirstPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    _checkFirstLaunch(context);
+
     return Scaffold(
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
@@ -40,7 +43,7 @@ class FirstPage extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 425,
+              top: 400,
               left: 0,
               child: Column(
                 crossAxisAlignment:
@@ -189,6 +192,7 @@ class FirstPage extends StatelessWidget {
                     child: Center(
                       child: ElevatedButton(
                         onPressed: () {
+                          _markAppAsLaunched();
                           // Add your onPressed logic here
                           // print('Continue button pressed');
                           Navigator.push(
@@ -281,5 +285,26 @@ class FirstPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> _checkFirstLaunch(BuildContext context) async {
+    final prefs = await SharedPreferences.getInstance();
+    bool isFirstLaunch = prefs.getBool('isFirstLaunch') ?? true;
+
+    if (!isFirstLaunch) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                const Home()), // Navigate to HomePage if not first launch
+      );
+    }
+  }
+
+  // Set the app as already launched
+  Future<void> _markAppAsLaunched() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool(
+        'isFirstLaunch', false); // Set the flag as false after first launch
   }
 }

@@ -39,13 +39,25 @@ class _Search_PageState extends State<Search_Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(15, 16, 20, 1),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Search Bar
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFF1B2B50), // Bottom Color
+              Color(0xFF0A0F24), // Top Color
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Search Bar
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.06,
+            ),
+            TextField(
               decoration: InputDecoration(
                 hintText: "Search for 'crime'",
                 hintStyle: const TextStyle(color: Colors.grey),
@@ -61,128 +73,140 @@ class _Search_PageState extends State<Search_Page> {
                 ),
               ),
             ),
-          ),
-          const SizedBox(height: 10),
-          // Trending Section Title
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text(
-              'Trending in',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
+            const SizedBox(height: 10),
+            // Trending Section Title
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                'Trending in',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 10),
-          // Horizontal List of Trending Items
-          SizedBox(
-            height: 50, // Fix the height to ensure proper constraints
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Row(
-                      children: [
-                        const Icon(Icons.trending_up,
-                            color: Colors.grey, size: 24),
-                        const SizedBox(width: 10),
-                        const Text(
-                          'India',
-                          style: TextStyle(color: Colors.white),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                    margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                    decoration: BoxDecoration(
-                      color: const Color.fromRGBO(25, 26, 30, 1),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  // Generate trending items dynamically
-                  ...trendings.map((item) {
-                    return Container(
-                      width: 130, // Set fixed width for each item
+            const SizedBox(height: 10),
+            // Horizontal List of Trending Items
+            SizedBox(
+              height: 50, // Fix the height to ensure proper constraints
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                              height: 50,
+                              width: 100,
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.trending_up,
+                                      color: Colors.grey, size: 30),
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+                                  const Text(
+                                    'India',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 15.5),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              )),
+                        ],
+                      ),
                       margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
                         color: const Color.fromRGBO(25, 26, 30, 1),
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      child: Center(
-                        child: Text(
-                          item,
-                          style: const TextStyle(color: Colors.white),
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
-          // Grid Section Title
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text(
-              'Explore Categories',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
-          // Grid of Categories
-          Expanded(
-            child: MasonryGridView.builder(
-              gridDelegate:
-                  const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, // Number of columns
-              ),
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-              itemCount: image.length,
-              padding: const EdgeInsets.all(10),
-              itemBuilder: (context, index) {
-                final randomHeight = random.nextInt(200) + 100; // Random height
-                return Card(
-                  child: Container(
-                    height: randomHeight.toDouble(),
-                    child: Image.network(
-                      image[index],
-                      fit: BoxFit.cover,
-                      loadingBuilder: (context, child, loadingProgress) {
-                        if (loadingProgress == null) return child;
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      },
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Center(
-                          child: Icon(
-                            Icons.broken_image,
-                            color: Colors.grey,
-                            size: 50,
-                          ),
-                        );
-                      },
                     ),
-                  ),
-                );
-              },
+                    const SizedBox(width: 5),
+                    // Generate trending items dynamically
+                    ...trendings.map((item) {
+                      return Container(
+                        width: 100, // Set fixed width for each item
+                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                        decoration: BoxDecoration(
+                          color: const Color.fromRGBO(25, 26, 30, 1),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: Center(
+                          child: Text(
+                            item,
+                            style: const TextStyle(color: Colors.white),
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ],
+                ),
+              ),
             ),
-          ),
-        ],
+            const SizedBox(height: 10),
+            // Grid Section Title
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                'Explore Categories',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            // Grid of Categories
+            Expanded(
+              child: MasonryGridView.builder(
+                gridDelegate:
+                    const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2, // Number of columns
+                ),
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                itemCount: image.length,
+                padding: const EdgeInsets.all(10),
+                itemBuilder: (context, index) {
+                  final randomHeight =
+                      random.nextInt(200) + 100; // Random height
+                  return Card(
+                    child: Container(
+                      height: randomHeight.toDouble(),
+                      child: Image.network(
+                        image[index],
+                        fit: BoxFit.cover,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        },
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Center(
+                            child: Icon(
+                              Icons.broken_image,
+                              color: Colors.grey,
+                              size: 50,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
