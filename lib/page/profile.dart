@@ -31,10 +31,13 @@ class _Profile_PageState extends State<Profile_Page> {
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.01,
               ),
-              Text(
-                'Help & Settings',
-                style: TextStyle(
-                  color: Colors.white,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Help & Settings',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
               ),
               // SizedBox(

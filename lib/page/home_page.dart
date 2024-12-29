@@ -10,6 +10,12 @@ class Home_Page extends StatefulWidget {
 }
 
 class _Home_PageState extends State<Home_Page> {
+  final List<String> carouselImage = [
+    'https://imgs.search.brave.com/XSpSz92OL2rFOjS5H58XG4WZY82vpBbDpiO8S_oLYIE/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9nZXR3/YWxscGFwZXJzLmNv/bS93YWxscGFwZXIv/ZnVsbC8xLzkvYi8x/MjY3ODcxLWFtYXpp/bmctbW92aWUtcG9z/dGVyLXdhbGxwYXBl/ci0xOTIweDEwODAu/anBn',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH0TmlR4fZfiabA5rrKeSQL6SjMaC9f-VE3teO5UNZF0t1u3golVsZnRRkKkqUMU-nAJw&usqp=CAU',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcbszmhOKi5m1ye5CZ-RaRLqKreZY0DXkscIsii2jSQioWnIE_xHYq4Xkah5pVd-plmHM&usqp=CAU',
+  ];
+
   final List<String> images = [
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl09y_zbZZkFHSiy-ifR3J9yjOFwHsn68ju9LebdwB57fceKvxW8niRC81bUwHK76RE7M&usqp=CAU',
     'https://rukminim2.flixcart.com/image/850/1000/jn3hocw0/poster/j/s/q/medium-hollywood-movie-wall-poster-pirates-of-the-caribbean-dead-original-imaf9uv7zzgp6wvg.jpeg?q=90&crop=false',
@@ -17,6 +23,7 @@ class _Home_PageState extends State<Home_Page> {
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToABjXIbMWnBljRyYOJ4N8GA5IdJDRZ7Xc8PNvGLfawi-nlydyS10hCaGIclP432_c4oM&usqp=CAU',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv3oC5ZdxSfqHlEBJtioM-Ljgq4UjHB4uhg6ZuM1_w1M72Ei6ho8z9nh2Ri5-hMiURc1A&usqp=CAU',
     'https://i.pinimg.com/originals/ec/f7/98/ecf798ea3d6de049ee02b19c9c470c2e.jpg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1sHa9CO9Tj_CfCSsN0UrUYk6ApcGngkDmRA&s'
   ];
 
   final List<String> categories = [
@@ -32,6 +39,15 @@ class _Home_PageState extends State<Home_Page> {
     'தமிழ்',
     'English',
   ];
+
+  final List<String> buttonLabels = [
+    "Watch Now",
+    "Explore More",
+    "Subscribe",
+    "Learn More"
+  ];
+
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -112,40 +128,57 @@ class _Home_PageState extends State<Home_Page> {
   }
 
   Widget buildBannerCarousel() {
-    return CarouselSlider(
-      items: [
-        Image.asset(
-          'assets/images/solo.jpeg',
-          fit: BoxFit.cover,
+    return Stack(
+      children: [
+        Positioned(
+          child: CarouselSlider(
+            items: carouselImage.map((image) {
+              return Image.network(
+                image,
+                fit: BoxFit.cover,
+                width: double.infinity,
+              );
+            }).toList(),
+            options: CarouselOptions(
+              aspectRatio: 9 / 16,
+              viewportFraction: 1,
+              autoPlay: true,
+              autoPlayAnimationDuration: Duration(seconds: 2),
+              height: 350,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  currentIndex = index;
+                });
+              },
+            ),
+          ),
         ),
-        Image.network(
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1sHa9CO9Tj_CfCSsN0UrUYk6ApcGngkDmRA&s',
-          fit: BoxFit.cover,
+        Positioned(
+          bottom: 16,
+          right: 155,
+          child: ElevatedButton(
+            onPressed: () {
+              // Handle button action based on the currentIndex
+              print("Button for Slide $currentIndex clicked!");
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blue,
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            child: Text(
+              buttonLabels[currentIndex],
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+          ),
         ),
-        Image.network(
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH0TmlR4fZfiabA5rrKeSQL6SjMaC9f-VE3teO5UNZF0t1u3golVsZnRRkKkqUMU-nAJw&usqp=CAU',
-          fit: BoxFit.cover,
-        ),
-        Image.network(
-          'https://imgs.search.brave.com/XSpSz92OL2rFOjS5H58XG4WZY82vpBbDpiO8S_oLYIE/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9nZXR3/YWxscGFwZXJzLmNv/bS93YWxscGFwZXIv/ZnVsbC8xLzkvYi8x/MjY3ODcxLWFtYXpp/bmctbW92aWUtcG9z/dGVyLXdhbGxwYXBl/ci0xOTIweDEwODAu/anBn',
-          fit: BoxFit.cover,
-        ),
-
-        // Text(
-        //   'Hello',
-        //   style: TextStyle(
-        //     fontWeight: FontWeight.bold,
-        //     color: Colors.amber,
-        //   ),
-        //   textAlign: TextAlign.center,
-        // ),
       ],
-      options: CarouselOptions(
-        viewportFraction: 1,
-        autoPlay: true,
-        autoPlayAnimationDuration: Duration(seconds: 2),
-        height: 350,
-      ),
     );
   }
 
